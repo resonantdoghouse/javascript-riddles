@@ -595,9 +595,9 @@ Function prototype is still a function.
 ## 🧩 29. Weird instanceof
 
 ```js
-console.log([] instanceof Array);       // true
-console.log([] instanceof Object);      // true
-console.log(function(){} instanceof Function); // true
+console.log([] instanceof Array);       // ??
+console.log([] instanceof Object);      // ??
+console.log(function(){} instanceof Function); // ??
 ```
 
 <details>
