@@ -39,7 +39,7 @@ const obj = {
   value: 42,
   getValue: () => {
     return this.value;
-  }
+  },
 };
 
 console.log(obj.getValue()); // ??
@@ -60,8 +60,8 @@ Arrow functions don't bind their own `this` — they use the one from their oute
 
 ```js
 const a = {};
-const b = { key: 'b' };
-const c = { key: 'c' };
+const b = { key: "b" };
+const c = { key: "c" };
 
 a[b] = 123;
 a[c] = 456;
@@ -84,13 +84,13 @@ Objects used as keys are converted to the same string: `"[object Object]"`. So `
 
 ```js
 const promise = new Promise((resolve, reject) => {
-  console.log('Promise created');
-  resolve('Done');
+  console.log("Promise created");
+  resolve("Done");
 });
 
-promise.then(res => console.log(res));
+promise.then((res) => console.log(res));
 
-console.log('After promise');
+console.log("After promise");
 ```
 
 <details>
@@ -113,17 +113,17 @@ Creating a Promise runs its executor function immediately (sync). `.then()` runs
 ## 🧵 5. Microtasks vs Macrotasks
 
 ```js
-console.log('Start');
+console.log("Start");
 
 setTimeout(() => {
-  console.log('Timeout');
+  console.log("Timeout");
 }, 0);
 
 Promise.resolve().then(() => {
-  console.log('Promise');
+  console.log("Promise");
 });
 
-console.log('End');
+console.log("End");
 ```
 
 <details>
@@ -147,8 +147,8 @@ Microtasks (`Promise.then`) run before macrotasks (`setTimeout`), even with 0 de
 ## 🔄 6. Reverse Coercion Riddle
 
 ```js
-console.log([] == false);     // true
-console.log([] == ![]);       // true
+console.log([] == false); // true
+console.log([] == ![]); // true
 ```
 
 <details>
@@ -166,11 +166,11 @@ console.log([] == ![]);       // true
 ```js
 function Wizard() {}
 Wizard.prototype.castSpell = function () {
-  return '💥 Fireball!';
+  return "💥 Fireball!";
 };
 
 const merlin = new Wizard();
-merlin.castSpell = () => '✨ Sparkles!';
+merlin.castSpell = () => "✨ Sparkles!";
 delete merlin.castSpell;
 
 console.log(merlin.castSpell()); // ??
@@ -194,7 +194,7 @@ const arr = [1, 2, 3];
 arr[10] = 11;
 
 console.log(arr.length); // ??
-console.log(arr.map(x => x * 2)); // ??
+console.log(arr.map((x) => x * 2)); // ??
 ```
 
 <details>
@@ -210,7 +210,7 @@ console.log(arr.map(x => x * 2)); // ??
 ## 🧪 9. Falsy Funhouse
 
 ```js
-const weird = [0, null, undefined, false, '', NaN];
+const weird = [0, null, undefined, false, "", NaN];
 
 for (let value of weird) {
   if (value) {
@@ -247,7 +247,6 @@ test();
 Throws a `ReferenceError`. `let` is hoisted but not initialized — it's in the Temporal Dead Zone.
 
 </details>
-
 
 ---
 
@@ -308,13 +307,13 @@ Returns `false`.
 hoisted();
 
 function hoisted() {
-  console.log('I am hoisted');
+  console.log("I am hoisted");
 }
 
 notHoisted();
 
 var notHoisted = function () {
-  console.log('I am not hoisted');
+  console.log("I am not hoisted");
 };
 ```
 
@@ -345,7 +344,7 @@ console.log(oops); // ??
 
 Logs `42`.
 
-Undeclared variables become *implicit globals* (in sloppy mode).
+Undeclared variables become _implicit globals_ (in sloppy mode).
 
 </details>
 
@@ -383,7 +382,7 @@ console.log(1 in arr); // ??
 - `arr[1]` logs `undefined`.
 - `1 in arr` returns `false`.
 
-There's a *hole* in the array, not an actual `undefined` value.
+There's a _hole_ in the array, not an actual `undefined` value.
 
 </details>
 
@@ -412,10 +411,10 @@ All callbacks share the same `i` (3) due to `var`. Use `let` to capture each ite
 
 ```js
 function foo() {
-  return
-    {
-      ok: true
-    };
+  return;
+  {
+    ok: true;
+  }
 }
 
 console.log(foo()); // ??
@@ -435,7 +434,7 @@ The `return` statement is terminated before the object — it's a line break bug
 ## 🧩 20. parseInt Quirk
 
 ```js
-console.log(parseInt('08')); // ??
+console.log(parseInt("08")); // ??
 ```
 
 <details>
@@ -452,8 +451,8 @@ Always pass radix: `parseInt('08', 10)`.
 ## 🧩 21. isNaN vs Number.isNaN
 
 ```js
-console.log(isNaN('foo'));        // ??
-console.log(Number.isNaN('foo')); // ??
+console.log(isNaN("foo")); // ??
+console.log(Number.isNaN("foo")); // ??
 ```
 
 <details>
@@ -493,7 +492,7 @@ In non-strict mode, `arguments` and named params are linked.
 ## 🧩 23. Double Negation Oddity
 
 ```js
-console.log(!!'false' == !!'true'); // ??
+console.log(!!"false" == !!"true"); // ??
 ```
 
 <details>
@@ -561,8 +560,8 @@ Returns `NaN`.
 ## 🧩 27. String Padding Confusion
 
 ```js
-console.log('5' - '2'); // ??
-console.log('5' + '2'); // ??
+console.log("5" - "2"); // ??
+console.log("5" + "2"); // ??
 ```
 
 <details>
@@ -595,9 +594,9 @@ Function prototype is still a function.
 ## 🧩 29. Weird instanceof
 
 ```js
-console.log([] instanceof Array);       // ??
-console.log([] instanceof Object);      // ??
-console.log(function(){} instanceof Function); // ??
+console.log([] instanceof Array); // ??
+console.log([] instanceof Object); // ??
+console.log(function () {} instanceof Function); // ??
 ```
 
 <details>
@@ -624,5 +623,24 @@ console.log(delete x); // ??
 Returns `false`.
 
 `delete` only works on object properties, not variables declared with `var`, `let`, or `const`.
+
+</details>
+
+## 🔄 31. Going Loopy
+
+What will the result of the following code be?
+
+```js
+for (;;) {
+  console.log("What will happen?");
+}
+```
+
+<details>
+<summary>💡 Answer</summary>
+
+Infinite Loop.
+
+Technically the for loop will run although since there's no exit condition it will create an infinite loop 🤯
 
 </details>
